@@ -20,7 +20,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col">
               <h2 className="text-white text-[40px]">Helping Girls Lose Weight</h2>
-              <p className="text-gray-400 text-[20px] font-light">Pronto a dare una svolta alla tua vita? Clicca "Iscriviti ora"!</p>
+              <p className="text-gray-400 text-[20px] font-light">Pronto a dare una svolta alla tua vita? Clicca su Iscriviti ora!</p>
             </div>
             <button className='rounded-xl bg-[#E2FF32] text-black px-20 py-5 font-semibold w-fit text-xl'>
               ISCRIVITI ORA
