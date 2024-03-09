@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+h2{
+    color: #000;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 2.5rem;
+}

@@ -2,12 +2,35 @@
 import Header from "@/components/Header";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Video from 'next-video';
+import getStarted from '/videos/video-presentazione.mp4';
+import Square from "@/components/Squadre";
+import Line from "@/components/Line";
+import { useEffect } from "react";
+import { useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
 export default function Home() {
+  const [ref, inView] = useInView();
+  const line = useAnimation();
+  const secondCircle = useAnimation();
+
+  useEffect(() => {
+    console.log(inView)
+    if(inView){
+      sequence()
+    }
+  }, [inView]);
+
+  const sequence = async () => {
+    await line.start("start");
+    await secondCircle.start("start");
+  }
+
   return (
     <Elements stripe={stripePromise}>
       <section className="h-screen bg-hero-section bg-center bg-cover bg-no-repeat px-5 xl:px-20 py-10 flex flex-col">
@@ -27,25 +50,25 @@ export default function Home() {
             </button>
           </div>
           <div className="absolute w-full bottom-0 xl:flex justify-between items-center gap-8 text-white hidden">
-            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9">
+            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9 aspect-video">
               <div className="w-20 h-20 bg-black rounded-full text-white flex items-center justify-center">icona</div>
               <div>
                 <p>Workout from anywhere in the world</p>
               </div>
             </div>
-            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9">
+            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9 aspect-video">
               <div className="w-20 h-20 bg-black rounded-full text-white flex items-center justify-center">icona</div>
               <div>
                 <p>Workout from anywhere in the world</p>
               </div>
             </div>
-            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9">
+            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9 aspect-video">
               <div className="w-20 h-20 bg-black rounded-full text-white flex items-center justify-center">icona</div>
               <div>
                 <p>Workout from anywhere in the world</p>
               </div>
             </div>
-            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9">
+            <div className="flex items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 gap-9 aspect-video">
               <div className="w-20 h-20 bg-black rounded-full text-white flex items-center justify-center">icona</div>
               <div>
                 <p>Workout from anywhere in the world</p>
@@ -66,28 +89,42 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center justify-center w-full pt-16">
-          <iframe className=" rounded-3xl" width="1000" height="500" src="https://www.youtube.com/embed/Yko3GMseY40?si=Lyggdau3qLM0KlDp&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" sandbox loading allowfullscreen></iframe>
+          <Video src={getStarted} />
         </div>
-        <div className="w-full flex flex-col xl:flex-row justify-between items-center gap-8 text-white pt-20">
-            <div className="flex flex-col items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3">
-              <p className="text-[60px] relative">9 <span className="absolute top-5 text-3xl text-[#E2FF32] leading-none	">+</span></p>
+        <div className="w-full flex flex-col xl:flex-row justify-between items-center gap-8 text-white pt-20 ">
+            <div className="w-full flex flex-col items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 aspect-video">
+              <p className="text-[80px] relative">9 <span className="absolute top-5 text-3xl text-[#E2FF32] leading-none	">+</span></p>
               <div>
                 <p>Workout from anywhere in the world</p>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3">
-              <p className="text-[60px] relative">15 <span className="absolute top-5 text-3xl text-[#E2FF32] leading-none	">+</span></p>
+            <div className="w-full flex flex-col items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 aspect-video">
+              <p className="text-[80px] relative">15 <span className="absolute top-5 text-3xl text-[#E2FF32] leading-none	">+</span></p>
               <div>
                 <p>Workout from anywhere in the world</p>
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3">
-              <p className="text-[60px] relative">300 <span className="absolute top-5 text-3xl text-[#E2FF32] leading-none	">+</span></p>
+            <div className="w-full flex flex-col items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 aspect-video">
+              <p className="text-[80px] relative">300 <span className="absolute top-5 text-3xl text-[#E2FF32] leading-none	">+</span></p>
               <div>
                 <p>Workout from anywhere in the world</p>
               </div>
             </div>
           </div>
+      </section>
+      <section className="flex flex-col items-center justify-cente gap-10 py-8">
+        <div className="flex flex-col text-center">
+          <h2 >Cosa troverai</h2>
+          <p>Workout from anywhere in the world</p>
+        </div>
+        <div className="flex items-center" ref={ref}>
+          <Square alreadyFinish={true} step={1} description="Workout from anywhere in the world"/>
+          <Line controls={line} duration={3}/>
+          <Square controls={secondCircle} duration={6} step={2} description="Workout from anywhere in the world"/>
+          <Line controls={line} duration={9}/>
+          <Square controls={secondCircle} duration={12} step={3} description="Workout from anywhere in the world"/>
+   
+        </div>
       </section>
     </Elements>
   );
