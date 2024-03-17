@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Video from "next-video";
+import Image from "next/image";
 import getStarted from "/videos/video-presentazione.mp4";
 import Square from "@/components/Squadre";
 import Line from "@/components/Line";
@@ -187,21 +188,23 @@ export default function Home() {
       <section className="bg-black pt-10">
         <MDBCarousel showIndicators showControls>
           <MDBCarouselItem itemId={1} className="text-center py-24 text-white">
-            <img
+            <Image
               src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
               alt="avatar"
               className="rounded-circle shadow-1-strong m-auto pb-10"
-              style={{ width: "150px" }}
+              width={150}
+              height={150}
             />
             <h5>First slide label</h5>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </MDBCarouselItem>
           <MDBCarouselItem itemId={2} className="text-center py-24 text-white">
-            <img
+            <Image
               src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
               alt="avatar"
               className="rounded-circle shadow-1-strong m-auto pb-10"
-              style={{ width: "150px" }}
+              width={150}
+              height={150}
             />
             <h5>First slide label</h5>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
