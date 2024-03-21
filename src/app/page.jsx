@@ -4,7 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Video from "next-video";
 import Image from "next/image";
-import getStarted from "/videos/video-presentazione.mp4";
+import videoPres from "/videos/video-presentazione.mp4";
 import Square from "@/components/Squadre";
 import Line from "@/components/Line";
 import { useEffect } from "react";
@@ -120,7 +120,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center justify-center w-full pt-16">
-          <Video src={getStarted} />
+          <Video src={videoPres} />
         </div>
         <div className="w-full flex flex-col xl:flex-row justify-between items-center gap-8 text-white pt-20 ">
           <div className="w-full flex flex-col items-center justify-center backdrop-brightness-50 rounded-xl px-4 py-3 aspect-video">

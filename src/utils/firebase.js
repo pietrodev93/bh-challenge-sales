@@ -1,4 +1,6 @@
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDMAeEXgXDKUstgkh2LQxAOLSRZRjyyYUY",
@@ -10,6 +12,9 @@ const firebaseConfig = {
     measurementId: "G-PG780SL8FX"
 };
 
-let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-
-export default firebase_app;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// Initialize Firebase Authentication and get a reference to the service
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export default app;
