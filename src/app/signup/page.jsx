@@ -63,7 +63,6 @@ export default function Signup() {
         const user = userCredential.user;
         console.log(user);
         router.push("/");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -71,7 +70,6 @@ export default function Signup() {
         setErrors(errorMessage);
         setLoading(false);
         console.log(errorCode, errorMessage);
-        // ..
       });
 
     await updateProfile(auth.currentUser, {
